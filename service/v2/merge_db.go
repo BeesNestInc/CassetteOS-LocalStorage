@@ -1,9 +1,9 @@
 package v2
 
 import (
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/sqlite"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/sqlite"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service/model"
+	model2 "github.com/BeesNestInc/CassetteOS-LocalStorage/service/model"
 )
 
 func init() {

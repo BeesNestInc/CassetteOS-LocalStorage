@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"os"
 
-	interfaces "github.com/IceWhaleTech/CasaOS-Common"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/systemctl"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
+	interfaces "github.com/BeesNestInc/CassetteOS-Common"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/systemctl"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/common"
 )
 
 const (

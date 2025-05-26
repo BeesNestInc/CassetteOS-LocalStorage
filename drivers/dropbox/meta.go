@@ -1,8 +1,8 @@
 package dropbox
 
 import (
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/internal/driver"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/internal/op"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/internal/driver"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/internal/op"
 )
 
 const ICONURL = "./img/driver/Dropbox.svg"

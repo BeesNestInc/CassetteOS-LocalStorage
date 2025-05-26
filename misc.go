@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/common"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/model"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service"
 	"github.com/pilebones/go-udev/netlink"
 	"go.uber.org/zap"
 )

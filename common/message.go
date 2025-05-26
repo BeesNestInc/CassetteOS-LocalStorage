@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen/message_bus"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/codegen/message_bus"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/model"
 	"github.com/pilebones/go-udev/netlink"
 )
 

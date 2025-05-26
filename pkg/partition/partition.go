@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/utils/command"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/utils/command"
 )
 
 type Partition struct {

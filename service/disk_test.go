@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/model"
 	"gotest.tools/v3/assert"
 )
 
