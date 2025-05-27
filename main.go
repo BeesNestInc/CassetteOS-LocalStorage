@@ -45,7 +45,7 @@ var (
 	//go:embed api/local_storage/openapi.yaml
 	_docYAML string
 
-	//go:embed build/sysroot/etc/casaos/local-storage.conf.sample
+	//go:embed build/sysroot/etc/cassetteos/local-storage.conf.sample
 	_confSample string
 )
 
@@ -132,11 +132,11 @@ func ensureDefaultDirectories() {
 	}
 
 	if sysType == "windows" {
-		dirArray = []string{"C:\\CasaOS\\DATA\\AppData", "C:\\CasaOS\\DATA\\Documents", "C:\\CasaOS\\DATA\\Downloads", "C:\\CasaOS\\DATA\\Gallery", "C:\\CasaOS\\DATA\\Media/Movies", "C:\\CasaOS\\DATA\\Media\\TV Shows", "C:\\CasaOS\\DATA\\Media\\Music"}
+		dirArray = []string{"C:\\CassetteOS\\DATA\\AppData", "C:\\CassetteOS\\DATA\\Documents", "C:\\CassetteOS\\DATA\\Downloads", "C:\\CassetteOS\\DATA\\Gallery", "C:\\CassetteOS\\DATA\\Media/Movies", "C:\\CassetteOS\\DATA\\Media\\TV Shows", "C:\\CassetteOS\\DATA\\Media\\Music"}
 	}
 
 	if sysType == "darwin" {
-		dirArray = []string{"./CasaOS/DATA/AppData", "./CasaOS/DATA/Documents", "./CasaOS/DATA/Downloads", "./CasaOS/DATA/Gallery", "./CasaOS/DATA/Media/Movies", "./CasaOS/DATA/Media/TV Shows", "./CasaOS/DATA/Media/Music"}
+		dirArray = []string{"./CassetteOS/DATA/AppData", "./CassetteOS/DATA/Documents", "./CassetteOS/DATA/Downloads", "./CassetteOS/DATA/Gallery", "./CassetteOS/DATA/Media/Movies", "./CassetteOS/DATA/Media/TV Shows", "./CassetteOS/DATA/Media/Music"}
 	}
 
 	for _, v := range dirArray {
