@@ -68,7 +68,7 @@ type diskService struct {
 const (
 	PersistentTypeNone   = "none"
 	PersistentTypeFStab  = "fstab"
-	PersistentTypeCasetteOS = "cassetteos"
+	PersistentTypeCassetteOS = "cassetteos"
 )
 
 var (
