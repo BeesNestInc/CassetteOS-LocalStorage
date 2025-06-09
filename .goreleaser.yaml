@@ -1,14 +1,18 @@
 # This is an example .goreleaser.yml file with some sensible defaults.
 # Make sure to check the documentation at https://goreleaser.com
-project_name: casaos-local-storage
+project_name: cassetteos-local-storage
+version: 2
 before:
   hooks:
+    - rm -rf third_party_licenses
     - go generate
+    - bash -c 'go run github.com/google/go-licenses@latest save . --save_path=third_party_licenses || true'
+    - bash -c 'cp -r license_overrides/* third_party_licenses/ || true'
     - go mod tidy
     - go test -race -v ./...
 builds:
-  - id: casaos-local-storage-amd64
-    binary: build/sysroot/usr/bin/casaos-local-storage
+  - id: cassetteos-local-storage-amd64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage
     hooks:
       post:
         - upx --best --lzma -v --no-progress "{{ .Path }}"
@@ -17,6 +21,7 @@ builds:
     ldflags:
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
       - -s
       - -w
       - -extldflags "-static"
@@ -28,8 +33,8 @@ builds:
       - linux
     goarch:
       - amd64
-  - id: casaos-local-storage-arm64
-    binary: build/sysroot/usr/bin/casaos-local-storage
+  - id: cassetteos-local-storage-arm64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage
     # hooks:
     #   post:
     #     - upx --best --lzma -v --no-progress "{{ .Path }}"
@@ -38,6 +43,7 @@ builds:
     ldflags:
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
       - -s
       - -w
       - -extldflags "-static"
@@ -49,8 +55,8 @@ builds:
       - linux
     goarch:
       - arm64
-  - id: casaos-local-storage-arm-7
-    binary: build/sysroot/usr/bin/casaos-local-storage
+  - id: cassetteos-local-storage-arm-7
+    binary: build/sysroot/usr/bin/cassetteos-local-storage
     hooks:
       post:
         - upx --best --lzma -v --no-progress "{{ .Path }}"
@@ -59,6 +65,7 @@ builds:
     ldflags:
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
       - -s
       - -w
       - -extldflags "-static"
@@ -72,8 +79,8 @@ builds:
       - arm
     goarm:
       - "7"
-  - id: casaos-local-storage-migration-tool-amd64
-    binary: build/sysroot/usr/bin/casaos-local-storage-migration-tool
+  - id: cassetteos-local-storage-migration-tool-amd64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage-migration-tool
     hooks:
       post:
         - upx --best --lzma -v --no-progress "{{ .Path }}"
@@ -83,6 +90,7 @@ builds:
     ldflags:
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
       - -s
       - -w
       - -extldflags "-static"
@@ -94,8 +102,8 @@ builds:
       - linux
     goarch:
       - amd64
-  - id: casaos-local-storage-migration-tool-arm64
-    binary: build/sysroot/usr/bin/casaos-local-storage-migration-tool
+  - id: cassetteos-local-storage-migration-tool-arm64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage-migration-tool
     # hooks:
     #   post:
     #     - upx --best --lzma -v --no-progress "{{ .Path }}"
@@ -105,6 +113,7 @@ builds:
     ldflags:
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
       - -s
       - -w
       - -extldflags "-static"
@@ -116,8 +125,8 @@ builds:
       - linux
     goarch:
       - arm64
-  - id: casaos-local-storage-migration-tool-arm-7
-    binary: build/sysroot/usr/bin/casaos-local-storage-migration-tool
+  - id: cassetteos-local-storage-migration-tool-arm-7
+    binary: build/sysroot/usr/bin/cassetteos-local-storage-migration-tool
     hooks:
       post:
         - upx --best --lzma -v --no-progress "{{ .Path }}"
@@ -127,6 +136,7 @@ builds:
     ldflags:
       - -X main.commit={{.Commit}}
       - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
       - -s
       - -w
       - -extldflags "-static"
@@ -143,22 +153,28 @@ builds:
 archives:
   - name_template: >-
       {{ .Os }}-{{- if eq .Arch "arm" }}arm-7{{- else }}{{ .Arch }}{{- end }}-{{ .ProjectName }}-v{{ .Version }}
-    id: casaos-local-storage
+    id: cassetteos-local-storage
     builds:
-      - casaos-local-storage-amd64
-      - casaos-local-storage-arm64
-      - casaos-local-storage-arm-7
+      - cassetteos-local-storage-amd64
+      - cassetteos-local-storage-arm64
+      - cassetteos-local-storage-arm-7
     files:
       - build/**/*
+      - README.md
+      - LICENSE
+      - third_party_licenses
   - name_template: >-
       {{ .Os }}-{{- if eq .Arch "arm" }}arm-7{{- else }}{{ .Arch }}{{- end }}-{{ .ProjectName }}-migration-tool-v{{ .Version }}
-    id: casaos-local-storage-migration-tool
+    id: cassetteos-local-storage-migration-tool
     builds:
-      - casaos-local-storage-migration-tool-amd64
-      - casaos-local-storage-migration-tool-arm64
-      - casaos-local-storage-migration-tool-arm-7
+      - cassetteos-local-storage-migration-tool-amd64
+      - cassetteos-local-storage-migration-tool-arm64
+      - cassetteos-local-storage-migration-tool-arm-7
     files:
       - build/sysroot/etc/**/*
+      - README.md
+      - LICENSE
+      - third_party_licenses
 checksum:
   name_template: "checksums.txt"
 snapshot:
@@ -171,8 +187,8 @@ changelog:
       - "^test:"
 release:
   github:
-    owner: IceWhaleTech
-    name: CasaOS-LocalStorage
+    owner: BeesNestInc
+    name: CassetteOS-LocalStorage
   draft: true
   prerelease: auto
   mode: replace

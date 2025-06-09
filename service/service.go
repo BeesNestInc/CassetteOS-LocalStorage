@@ -1,11 +1,11 @@
 package service
 
 import (
-	"github.com/IceWhaleTech/CasaOS-Common/external"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen/message_bus"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/config"
-	v2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/v2"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service/v2/wrapper"
+	"github.com/BeesNestInc/CassetteOS-Common/external"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/codegen/message_bus"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/config"
+	v2 "github.com/BeesNestInc/CassetteOS-LocalStorage/service/v2"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service/v2/wrapper"
 	"github.com/patrickmn/go-cache"
 	"gorm.io/gorm"
 )

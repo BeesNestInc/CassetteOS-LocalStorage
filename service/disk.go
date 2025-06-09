@@ -15,22 +15,22 @@ import (
 	"strings"
 	"time"
 
-	command2 "github.com/IceWhaleTech/CasaOS-Common/utils/command"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/constants"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/exec"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/file"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen/message_bus"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/config"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/fstab"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/mount"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/partition"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/utils/command"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
-	v2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/v2"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service/v2/fs"
+	command2 "github.com/BeesNestInc/CassetteOS-Common/utils/command"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/constants"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/exec"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/file"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/codegen/message_bus"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/common"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/model"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/config"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/fstab"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/mount"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/partition"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/utils/command"
+	model2 "github.com/BeesNestInc/CassetteOS-LocalStorage/service/model"
+	v2 "github.com/BeesNestInc/CassetteOS-LocalStorage/service/v2"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service/v2/fs"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/moby/sys/mountinfo"
 	"go.uber.org/zap"
@@ -68,7 +68,7 @@ type diskService struct {
 const (
 	PersistentTypeNone   = "none"
 	PersistentTypeFStab  = "fstab"
-	PersistentTypeCasaOS = "casaos"
+	PersistentTypeCassetteOS = "cassetteos"
 )
 
 var (
@@ -540,7 +540,7 @@ func (d *diskService) GetPersistentTypeByUUID(uuid string) string {
 	if result := d.db.Where(&model2.Volume{UUID: uuid}).Limit(1).Find(&m); result.Error != nil {
 		logger.Error("error when finding the volume by uuid in database", zap.Error(result.Error), zap.String("uuid", uuid))
 	} else if result.RowsAffected > 0 {
-		return PersistentTypeCasaOS
+		return PersistentTypeCassetteOS
 	}
 
 	// check if it is in fstab
@@ -690,7 +690,7 @@ func (d *diskService) InitCheck() {
 					Name:       "local-storage:disk:added",
 					Properties: properties,
 				}
-				// add UI properties to applicable events so that CasaOS UI can render it
+				// add UI properties to applicable events so that CassetteOS UI can render it
 				event := common.EventAdapterWithUIProperties(&eventModel)
 
 				bk := false

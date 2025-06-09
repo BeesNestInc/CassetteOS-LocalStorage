@@ -5,8 +5,8 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service/v2/wrapper"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/codegen"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service/v2/wrapper"
 	"gotest.tools/v3/assert"
 
 	"github.com/moby/sys/mountinfo"

@@ -1,0 +1,14 @@
+[Unit]
+After=cassetteos-gateway.service
+After=cassetteos-message-bus.service
+Description=CassetteOS Local Storage Service
+
+[Service]
+ExecStartPre=/usr/bin/cassetteos-local-storage -v
+ExecStart=/usr/bin/cassetteos-local-storage -c /etc/cassetteos/local-storage.conf
+PIDFile=/var/run/cassetteos/local-storage.pid
+Restart=always
+Type=notify
+
+[Install]
+WantedBy=multi-user.target

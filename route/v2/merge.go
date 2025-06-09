@@ -7,16 +7,16 @@ import (
 	"os"
 	"strings"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/constants"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/file"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/config"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/utils/merge"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service/v2/fs"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/constants"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/file"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/codegen"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/common"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/config"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/utils/merge"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service"
+	model2 "github.com/BeesNestInc/CassetteOS-LocalStorage/service/model"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service/v2/fs"
 	"go.uber.org/zap"
 
 	"github.com/labstack/echo/v4"
@@ -77,7 +77,7 @@ func (s *LocalStorage) SetMerge(ctx echo.Context) error {
 			}
 
 			if !volumeFound {
-				message := "volume " + volumeUUID + " not found, or it is not a CasaOS storage. Consider adding it to CasaOS first."
+				message := "volume " + volumeUUID + " not found, or it is not a CassetteOS storage. Consider adding it to CassetteOS first."
 				return ctx.JSON(http.StatusBadRequest, codegen.ResponseBadRequest{Message: &message})
 			}
 		}
@@ -182,7 +182,7 @@ func (s *LocalStorage) InitMerge(ctx echo.Context) error {
 
 			dir, _ := os.ReadDir(constants.DefaultFilePath)
 			if len(dir) > 0 {
-				message := "Please make sure the /var/lib/casaos/files directory is empty"
+				message := "Please make sure the /var/lib/cassetteos/files directory is empty"
 				return ctx.JSON(http.StatusBadRequest, codegen.ResponseBadRequest{Message: &message})
 			}
 
@@ -191,7 +191,7 @@ func (s *LocalStorage) InitMerge(ctx echo.Context) error {
 			err := os.Rename(m.MountPoint, constants.DefaultFilePath)
 			if err != nil {
 				fmt.Println(err)
-				message := "move " + m.MountPoint + " to /var/lib/casaos/files failed"
+				message := "move " + m.MountPoint + " to /var/lib/cassetteos/files failed"
 				return ctx.JSON(http.StatusBadRequest, codegen.ResponseBadRequest{Message: &message})
 			}
 		}

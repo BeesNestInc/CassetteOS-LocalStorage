@@ -1,12 +1,3 @@
-/*@Author: LinkLeong link@icewhale.com
- *@Date: 2022-07-11 16:02:29
- *@LastEditors: LinkLeong
- *@LastEditTime: 2022-08-17 19:14:50
- *@FilePath: /CasaOS/route/v1/storage.go
- *@Description:
- *@Website: https://www.casaos.io
- *Copyright (c) 2022 by icewhale, All Rights Reserved.
- */
 package v1
 
 import (
@@ -15,16 +6,16 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/model"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/common_err"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-Common/model"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/common_err"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
 	"github.com/labstack/echo/v4"
 	"go.uber.org/zap"
 
-	model1 "github.com/IceWhaleTech/CasaOS-LocalStorage/model"
-	model2 "github.com/IceWhaleTech/CasaOS-LocalStorage/service/model"
+	model1 "github.com/BeesNestInc/CassetteOS-LocalStorage/model"
+	model2 "github.com/BeesNestInc/CassetteOS-LocalStorage/service/model"
 
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service"
 )
 
 func GetStorageList(ctx echo.Context) error {

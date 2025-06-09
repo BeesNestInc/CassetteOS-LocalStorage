@@ -3,9 +3,9 @@ package service
 import (
 	"os"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/command"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/config"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/command"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/config"
 	"github.com/shirou/gopsutil/host"
 	"go.uber.org/zap"
 )

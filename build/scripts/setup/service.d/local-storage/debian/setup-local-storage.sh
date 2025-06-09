@@ -2,12 +2,12 @@
 
 set -e
 
-readonly APP_NAME="casaos-local-storage"
-readonly APP_NAME_FIRST="casaos-local-storage-first"
+readonly APP_NAME="cassetteos-local-storage"
+readonly APP_NAME_FIRST="cassetteos-local-storage-first"
 readonly APP_NAME_SHORT="local-storage"
 
 # copy config files
-readonly CONF_PATH=/etc/casaos
+readonly CONF_PATH=/etc/cassetteos
 readonly CONF_FILE=${CONF_PATH}/${APP_NAME_SHORT}.conf
 readonly CONF_FILE_SAMPLE=${CONF_PATH}/${APP_NAME_SHORT}.conf.sample
 

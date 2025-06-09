@@ -8,10 +8,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/model"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/common"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/model"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service"
 	"github.com/pilebones/go-udev/netlink"
 	"go.uber.org/zap"
 )
@@ -122,7 +122,7 @@ func monitorUEvent(ctx context.Context) {
 
 			if event := common.EventAdapter(uevent); event != nil {
 
-				// add UI properties to applicable events so that CasaOS UI can render it
+				// add UI properties to applicable events so that CassetteOS UI can render it
 				event := common.EventAdapterWithUIProperties(event)
 
 				if v, ok := event.Properties["local-storage:path"]; ok && strings.Contains(event.Name, "disk") {

@@ -5,10 +5,10 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/IceWhaleTech/CasaOS-Common/external"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/jwt"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/config"
-	v1 "github.com/IceWhaleTech/CasaOS-LocalStorage/route/v1"
+	"github.com/BeesNestInc/CassetteOS-Common/external"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/jwt"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/config"
+	v1 "github.com/BeesNestInc/CassetteOS-LocalStorage/route/v1"
 	"github.com/labstack/echo/v4"
 	echo_middleware "github.com/labstack/echo/v4/middleware"
 )
@@ -29,7 +29,6 @@ func InitV1Router() http.Handler {
 	e.Use(echo_middleware.Recover())
 	e.Use(echo_middleware.Logger())
 
-	// r.GET("/v1/recover/:type", v1.GetRecoverStorage)
 	v1Group := e.Group("/v1")
 
 	v1Group.Use(echo_middleware.JWTWithConfig(echo_middleware.JWTConfig{
@@ -76,12 +75,6 @@ func InitV1Router() http.Handler {
 
 			v1StorageGroup.DELETE("", v1.DeleteStorage)
 			v1StorageGroup.GET("", v1.GetStorageList)
-		}
-		v1CloudGroup := v1Group.Group("/cloud")
-		v1CloudGroup.Use()
-		{
-			v1CloudGroup.GET("", v1.ListStorages)
-			v1CloudGroup.DELETE("", v1.UmountStorage)
 		}
 		v1DriverGroup := v1Group.Group("/driver")
 		v1DriverGroup.Use()

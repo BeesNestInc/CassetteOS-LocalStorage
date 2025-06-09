@@ -15,18 +15,18 @@ import (
 	"strings"
 	"time"
 
-	"github.com/IceWhaleTech/CasaOS-Common/model"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/file"
-	util_http "github.com/IceWhaleTech/CasaOS-Common/utils/http"
-	"github.com/IceWhaleTech/CasaOS-Common/utils/logger"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/codegen/message_bus"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/common"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/cache"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/config"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/sqlite"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/pkg/utils/merge"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/route"
-	"github.com/IceWhaleTech/CasaOS-LocalStorage/service"
+	"github.com/BeesNestInc/CassetteOS-Common/model"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/file"
+	util_http "github.com/BeesNestInc/CassetteOS-Common/utils/http"
+	"github.com/BeesNestInc/CassetteOS-Common/utils/logger"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/codegen/message_bus"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/common"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/cache"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/config"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/sqlite"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/pkg/utils/merge"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/route"
+	"github.com/BeesNestInc/CassetteOS-LocalStorage/service"
 	"github.com/coreos/go-systemd/daemon"
 	"github.com/robfig/cron/v3"
 	"github.com/samber/lo"
@@ -45,8 +45,11 @@ var (
 	//go:embed api/local_storage/openapi.yaml
 	_docYAML string
 
-	//go:embed build/sysroot/etc/casaos/local-storage.conf.sample
+	//go:embed build/sysroot/etc/cassetteos/local-storage.conf.sample
 	_confSample string
+	Version string
+	Commit  string
+	Date    string
 )
 
 func init() {
@@ -61,6 +64,9 @@ func init() {
 
 	if *versionFlag {
 		fmt.Printf("v%s\n", common.Version)
+		fmt.Printf("Version: %s\n", Version)
+		fmt.Printf("Commit:  %s\n", Commit)
+		fmt.Printf("Date:    %s\n", Date)
 		os.Exit(0)
 	}
 
@@ -132,11 +138,11 @@ func ensureDefaultDirectories() {
 	}
 
 	if sysType == "windows" {
-		dirArray = []string{"C:\\CasaOS\\DATA\\AppData", "C:\\CasaOS\\DATA\\Documents", "C:\\CasaOS\\DATA\\Downloads", "C:\\CasaOS\\DATA\\Gallery", "C:\\CasaOS\\DATA\\Media/Movies", "C:\\CasaOS\\DATA\\Media\\TV Shows", "C:\\CasaOS\\DATA\\Media\\Music"}
+		dirArray = []string{"C:\\CassetteOS\\DATA\\AppData", "C:\\CassetteOS\\DATA\\Documents", "C:\\CassetteOS\\DATA\\Downloads", "C:\\CassetteOS\\DATA\\Gallery", "C:\\CassetteOS\\DATA\\Media/Movies", "C:\\CassetteOS\\DATA\\Media\\TV Shows", "C:\\CassetteOS\\DATA\\Media\\Music"}
 	}
 
 	if sysType == "darwin" {
-		dirArray = []string{"./CasaOS/DATA/AppData", "./CasaOS/DATA/Documents", "./CasaOS/DATA/Downloads", "./CasaOS/DATA/Gallery", "./CasaOS/DATA/Media/Movies", "./CasaOS/DATA/Media/TV Shows", "./CasaOS/DATA/Media/Music"}
+		dirArray = []string{"./CassetteOS/DATA/AppData", "./CassetteOS/DATA/Documents", "./CassetteOS/DATA/Downloads", "./CassetteOS/DATA/Gallery", "./CassetteOS/DATA/Media/Movies", "./CassetteOS/DATA/Media/TV Shows", "./CassetteOS/DATA/Media/Music"}
 	}
 
 	for _, v := range dirArray {
