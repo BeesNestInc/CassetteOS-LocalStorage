@@ -1,3 +1,6 @@
+## unreleased
+- LocalStorageの設定ファイルパスを修正
+
 ## v0.4.10-alpha1-cs1.0.0
 - Based on CasaOS-LocalStorage v0.4.10
 - Replaced module paths to use our own GitHub fork instead of the original IceWhaleTech repository  
