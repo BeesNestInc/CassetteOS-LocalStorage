@@ -1,5 +1,5 @@
 package config
 
 const (
-	LocalStorageConfigFilePath = "/etc/casstteos/local-storage.conf"
+	LocalStorageConfigFilePath = "/etc/cassetteos/local-storage.conf"
 )
