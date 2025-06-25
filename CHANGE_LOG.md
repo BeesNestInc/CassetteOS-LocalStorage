@@ -1,3 +1,6 @@
+## unreleased
+- opapi-codegenのソースURLをCassetteOSに変更
+
 ## v0.4.10-alpha1-cs1.0.1
 - LocalStorageの設定ファイルパスを修正
 - プロジェクトのツールチェインバージョンを Go 1.21 に変更。
