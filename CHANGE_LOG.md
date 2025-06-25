@@ -1,4 +1,4 @@
-## unreleased
+## v0.4.10-alpha1-cs1.0.2
 - opapi-codegenのソースURLをCassetteOSに変更
 
 ## v0.4.10-alpha1-cs1.0.1
