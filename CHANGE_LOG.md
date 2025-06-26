@@ -1,4 +1,4 @@
-## unreleased
+## v0.4.10-alpha1-cs1.0.3
 - Rclone削除に伴い、関連コードを削除
 
 ## v0.4.10-alpha1-cs1.0.2
