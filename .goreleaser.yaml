@@ -1,0 +1,195 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+project_name: cassetteos-local-storage
+version: 2
+before:
+  hooks:
+    - rm -rf third_party_licenses
+    - go generate
+    - bash -c 'go run github.com/google/go-licenses@latest save . --save_path=third_party_licenses || true'
+    - bash -c 'cp -r license_overrides/* third_party_licenses/ || true'
+    - go mod tidy
+    - go test -race -v ./...
+builds:
+  - id: cassetteos-local-storage-amd64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage
+    hooks:
+      post:
+        - upx --best --lzma -v --no-progress "{{ .Path }}"
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    ldflags:
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
+      - -s
+      - -w
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - amd64
+  - id: cassetteos-local-storage-arm64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage
+    # hooks:
+    #   post:
+    #     - upx --best --lzma -v --no-progress "{{ .Path }}"
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    ldflags:
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
+      - -s
+      - -w
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm64
+  - id: cassetteos-local-storage-arm-7
+    binary: build/sysroot/usr/bin/cassetteos-local-storage
+    hooks:
+      post:
+        - upx --best --lzma -v --no-progress "{{ .Path }}"
+    env:
+      - CC=arm-linux-gnueabihf-gcc
+    ldflags:
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
+      - -s
+      - -w
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm
+    goarm:
+      - "7"
+  - id: cassetteos-local-storage-migration-tool-amd64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage-migration-tool
+    hooks:
+      post:
+        - upx --best --lzma -v --no-progress "{{ .Path }}"
+    main: ./cmd/migration-tool
+    env:
+      - CC=x86_64-linux-gnu-gcc
+    ldflags:
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
+      - -s
+      - -w
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - amd64
+  - id: cassetteos-local-storage-migration-tool-arm64
+    binary: build/sysroot/usr/bin/cassetteos-local-storage-migration-tool
+    # hooks:
+    #   post:
+    #     - upx --best --lzma -v --no-progress "{{ .Path }}"
+    main: ./cmd/migration-tool
+    env:
+      - CC=aarch64-linux-gnu-gcc
+    ldflags:
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
+      - -s
+      - -w
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm64
+  - id: cassetteos-local-storage-migration-tool-arm-7
+    binary: build/sysroot/usr/bin/cassetteos-local-storage-migration-tool
+    hooks:
+      post:
+        - upx --best --lzma -v --no-progress "{{ .Path }}"
+    main: ./cmd/migration-tool
+    env:
+      - CC=arm-linux-gnueabihf-gcc
+    ldflags:
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+      - -X main.Version={{.Version}} 
+      - -s
+      - -w
+      - -extldflags "-static"
+    tags:
+      - musl
+      - netgo
+      - osusergo
+    goos:
+      - linux
+    goarch:
+      - arm
+    goarm:
+      - "7"
+archives:
+  - name_template: >-
+      {{ .Os }}-{{- if eq .Arch "arm" }}arm-7{{- else }}{{ .Arch }}{{- end }}-{{ .ProjectName }}-v{{ .Version }}
+    id: cassetteos-local-storage
+    builds:
+      - cassetteos-local-storage-amd64
+      - cassetteos-local-storage-arm64
+      - cassetteos-local-storage-arm-7
+    files:
+      - build/**/*
+      - README.md
+      - LICENSE
+      - third_party_licenses
+  - name_template: >-
+      {{ .Os }}-{{- if eq .Arch "arm" }}arm-7{{- else }}{{ .Arch }}{{- end }}-{{ .ProjectName }}-migration-tool-v{{ .Version }}
+    id: cassetteos-local-storage-migration-tool
+    builds:
+      - cassetteos-local-storage-migration-tool-amd64
+      - cassetteos-local-storage-migration-tool-arm64
+      - cassetteos-local-storage-migration-tool-arm-7
+    files:
+      - build/sysroot/etc/**/*
+      - README.md
+      - LICENSE
+      - third_party_licenses
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ incpatch .Version }}"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+release:
+  github:
+    owner: BeesNestInc
+    name: CassetteOS-LocalStorage
+  draft: true
+  prerelease: auto
+  mode: replace
+  name_template: "v{{ .Version }}"
