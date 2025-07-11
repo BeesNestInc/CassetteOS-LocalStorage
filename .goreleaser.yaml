@@ -189,7 +189,6 @@ release:
   github:
     owner: BeesNestInc
     name: CassetteOS-LocalStorage
-  draft: true
   prerelease: auto
   mode: replace
   name_template: "v{{ .Version }}"
