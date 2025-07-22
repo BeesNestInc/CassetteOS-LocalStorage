@@ -1,25 +1,4 @@
 # CassetteOS-LocalStorage
 このリポジトリは CassetteOS のローカルストレージの管理を行うコンポーネントです。  
 
-## publish api to npm
-
-### edit version in package.json
-
-### run
-```bash
-yarn
-
-yarn start
-```
-
-### publish
-
-Manual publish
-```bash
-yarn publish
-```
-
-Auto publish
-```bash 
-git push origin dev**
-```
+このプロジェクトは IceWhaleTech の [CasaOS-LocalStorage](https://github.com/IceWhaleTech/CasaOS-LocalStorage) に基づいており、CassetteOS に対応するための調整および機能拡張を行っています。
