@@ -1,9 +1,5 @@
 # CassetteOS-LocalStorage
-
-Local Storage service provides local storage and disk management functionalities to CassetteOS.
-
-
-
+このリポジトリは CassetteOS のローカルストレージの管理を行うコンポーネントです。  
 
 ## publish api to npm
 
