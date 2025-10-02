@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.7
 
 require (
-	github.com/BeesNestInc/CassetteOS-Common v0.0.9
+	github.com/BeesNestInc/CassetteOS-Common v0.0.10
 	github.com/Xhofe/go-cache v0.0.0-20220723083548-714439c8af9a
 	github.com/coreos/go-systemd v0.0.0-20191104093116-d3cd4ed1dbcf
 	github.com/deckarep/golang-set/v2 v2.3.0
